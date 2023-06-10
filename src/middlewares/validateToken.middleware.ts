@@ -11,6 +11,9 @@ export const validateTokenMiddleware = async (
   let token = req.headers.authorization;
 
   if (!token) {
+    if (req.body.original_link) {
+      return next();
+    }
     throw new AppError("Invalid token", 401);
   }
 

@@ -1,10 +1,14 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
-import { iLinkResponse } from "../../interfaces/link";
+import { iLinkUpdateResponse } from "../../interfaces/link";
 
-export const specificLinkResponseSchema: SchemaOf<iLinkResponse> = yup
+export const linkUpdateResponseSchema: SchemaOf<iLinkUpdateResponse> = yup
   .object()
   .shape({
+    user: yup.object().shape({
+      id: yup.string().notRequired(),
+      name: yup.string().notRequired(),
+    }),
     visits: yup.number().required(),
     shortened_link: yup.string().required(),
     original_link: yup.string().required(),

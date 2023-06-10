@@ -13,7 +13,7 @@ export interface iLinkUpdate {
   title?: string;
 }
 
-export interface iGetSpecificLink extends iLinkResponse {
+export interface iLinkUpdateResponse extends iLinkResponse {
   user: {
     id: string;
     name: string;

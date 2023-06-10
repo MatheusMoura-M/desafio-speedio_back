@@ -1,17 +1,16 @@
 import { AppError } from "../../error";
-import { iGetSpecificLink, iLinkUpdate } from "../../interfaces/link";
-import { specificLinkResponseSchema } from "../../schemas/link";
+import { iLinkUpdateResponse, iLinkUpdate } from "../../interfaces/link";
+import { linkUpdateResponseSchema } from "../../schemas/link";
 import { linkRepo, userRepo } from "../../utils/repositories";
 
 export const updateLinkService = async (
   linkUpdateData: iLinkUpdate,
   userId: string,
   linkId: string
-): Promise<iGetSpecificLink> => {
+): Promise<iLinkUpdateResponse> => {
   if (linkUpdateData.title === "") {
     delete linkUpdateData["title"];
   }
-
   const user = await userRepo.findOneBy({
     id: userId,
   });
@@ -29,6 +28,10 @@ export const updateLinkService = async (
     throw new AppError("Link not found!", 404);
   }
 
+  if (!link.user) {
+    throw new AppError("You don't have permission to update", 403);
+  }
+
   if (link.user.id !== user!.id) {
     throw new AppError("You don't have permission to update this link", 403);
   }
@@ -40,7 +43,7 @@ export const updateLinkService = async (
 
   await linkRepo.save(updatedLink);
 
-  const returnLink = await specificLinkResponseSchema.validate(updatedLink, {
+  const returnLink = await linkUpdateResponseSchema.validate(updatedLink, {
     stripUnknown: true,
   });
 

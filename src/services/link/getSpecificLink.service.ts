@@ -10,18 +10,25 @@ export const getSpecificLinkService = async (
     where: {
       id: linkId,
     },
-    relations: {
-      user: true,
-    },
   });
 
   if (!link) {
     throw new AppError("Link not found!", 404);
   }
 
-  const linkValidated = await specificLinkResponseSchema.validate(link, {
-    stripUnknown: true,
+  const incrementVisits = linkRepo.create({
+    ...link,
+    visits: link.visits + 1,
   });
+
+  await linkRepo.save(incrementVisits);
+
+  const linkValidated = await specificLinkResponseSchema.validate(
+    incrementVisits,
+    {
+      stripUnknown: true,
+    }
+  );
 
   return linkValidated;
 };

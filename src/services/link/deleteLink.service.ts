@@ -26,6 +26,10 @@ export const deleteLinkService = async (
     throw new AppError("Link not found!", 404);
   }
 
+  if (!link.user) {
+    throw new AppError("You don't have permission to update", 403);
+  }
+
   if (link.user.id !== user!.id) {
     throw new AppError("You don't have permission to delete this link", 403);
   }

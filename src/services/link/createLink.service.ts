@@ -21,7 +21,7 @@ export const createLinkService = async (
   const link = {
     ...linkData,
     shortened_link: shortenedLink,
-    user: userFound,
+    user: userId ? userFound : null,
   };
 
   const newLink = linkRepo.create(link);
