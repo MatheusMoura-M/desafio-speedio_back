@@ -5,9 +5,6 @@ import {
   BeforeUpdate,
   BeforeInsert,
   OneToMany,
-  OneToOne,
-  JoinColumn,
-  ManyToMany,
 } from "typeorm";
 import { hashSync } from "bcryptjs";
 import { Exclude } from "class-transformer";
