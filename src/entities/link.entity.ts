@@ -6,16 +6,16 @@ export class Link {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ length: 30 })
+  @Column({ length: 10 })
   shortened_link: string;
 
   @Column()
   original_link: string;
 
-  @Column({ length: 25 })
+  @Column({ length: 200 })
   title: string;
 
-  @Column()
+  @Column({ default: 0 })
   visits: number;
 
   @ManyToOne(() => User, (user) => user.links, { onDelete: "CASCADE" })

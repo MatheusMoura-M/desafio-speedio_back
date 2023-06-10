@@ -1,3 +1,5 @@
-import getRoutes from "./get.routes";
+import userRoutes from "./user.routes";
+import linkRoutes from "./link.routes";
+import sessionRoutes from "./session.routes";
 
-export { getRoutes };
+export { userRoutes, linkRoutes, sessionRoutes };
