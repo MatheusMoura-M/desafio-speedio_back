@@ -5,6 +5,7 @@ import {
   deleteUserController,
   getAllUsersController,
   getUserByIdController,
+  userProfileController,
 } from "../controllers/user";
 import { userCreateRequestSchema } from "../schemas/user";
 
@@ -15,6 +16,8 @@ userRoutes.post(
   bodyValidator(userCreateRequestSchema),
   createUserController
 );
+
+userRoutes.get("/profile", validateTokenMiddleware, userProfileController);
 
 userRoutes.delete("", validateTokenMiddleware, deleteUserController);
 
