@@ -8,6 +8,7 @@ import {
   userProfileController,
 } from "../controllers/user";
 import { userCreateRequestSchema } from "../schemas/user";
+import { listUserLinksController } from "../controllers/link";
 
 const userRoutes = Router();
 
@@ -18,6 +19,7 @@ userRoutes.post(
 );
 
 userRoutes.get("/profile", validateTokenMiddleware, userProfileController);
+userRoutes.get("/links", validateTokenMiddleware, listUserLinksController);
 
 userRoutes.delete("", validateTokenMiddleware, deleteUserController);
 

@@ -4,21 +4,21 @@ import { specificLinkResponseSchema } from "../../schemas/link";
 import { linkRepo } from "../../utils/repositories";
 
 export const getSpecificLinkService = async (
-  linkId: string
+  shortened_link: string
 ): Promise<iLinkResponse> => {
-  const link = await linkRepo.findOne({
+  const linkFound = await linkRepo.findOne({
     where: {
-      id: linkId,
+      shortened_link: shortened_link,
     },
   });
 
-  if (!link) {
+  if (!linkFound) {
     throw new AppError("Link not found!", 404);
   }
 
   const incrementVisits = linkRepo.create({
-    ...link,
-    visits: link.visits + 1,
+    ...linkFound,
+    visits: linkFound.visits + 1,
   });
 
   await linkRepo.save(incrementVisits);

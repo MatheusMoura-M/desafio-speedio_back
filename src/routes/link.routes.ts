@@ -19,7 +19,7 @@ linkRoutes.post(
 );
 
 linkRoutes.get("", getLinksController);
-linkRoutes.get("/:id", getSpecificLinkController);
+linkRoutes.get("/:shortened_link", getSpecificLinkController);
 
 linkRoutes.patch(
   "/:id",
