@@ -5,6 +5,10 @@ import { linkRepo } from "../../utils/repositories";
 export const getLinksService = async (): Promise<iLinkResponse[]> => {
   const links = await linkRepo.find();
 
+  links.sort((a, b) => {
+    return b.visits - a.visits;
+  });
+
   const linksValidated = await allLinksResponseSchema.validate(links, {
     stripUnknown: true,
   });
