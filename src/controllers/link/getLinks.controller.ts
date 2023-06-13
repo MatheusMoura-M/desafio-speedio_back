@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { getLinksService } from "../../services/link";
+import { getAllLinksService } from "../../services/link";
 
 export const getLinksController = async (_req: Request, res: Response) => {
-  const linksData = await getLinksService();
+  const linksData = await getAllLinksService();
 
   res.status(200).json(linksData);
 };

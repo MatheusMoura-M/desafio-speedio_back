@@ -1,15 +1,15 @@
 import { createLinkService } from "./createLink.service";
 import { deleteLinkService } from "./deleteLink.service";
-import { getLinksService } from "./getLinks.service";
+import { getAllLinksService } from "./getAllLinks.service";
 import { getSpecificLinkService } from "./getSpecificLink.service";
-import { listUserLinksService } from "./listUserLinks.service";
+import { getUserLinksService } from "./getUserLinks.service";
 import { updateLinkService } from "./updateLink.service";
 
 export {
   createLinkService,
   deleteLinkService,
   updateLinkService,
-  getLinksService,
+  getAllLinksService,
   getSpecificLinkService,
-  listUserLinksService,
+  getUserLinksService,
 };

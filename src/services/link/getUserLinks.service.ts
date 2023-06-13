@@ -1,6 +1,6 @@
 import { linkRepo } from "../../utils/repositories";
 
-export const listUserLinksService = async (userId: string) => {
+export const getUserLinksService = async (userId: string) => {
   const links = await linkRepo.find({
     where: {
       user: {

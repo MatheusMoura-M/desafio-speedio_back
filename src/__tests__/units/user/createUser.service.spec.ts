@@ -19,7 +19,7 @@ describe("CREATE USER", () => {
     await conn.destroy();
   });
 
-  it("Criação de usuário com sucesso", async () => {
+  it("Criação de usuário - Sucesso", async () => {
     const response = await createUserService(createUserMock);
 
     const expectResults = {
