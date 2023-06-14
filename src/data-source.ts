@@ -1,11 +1,12 @@
 import "reflect-metadata";
 import "dotenv/config";
 import { DataSourceOptions, DataSource } from "typeorm";
-// import { } from "./migrations/";
+import { Link, User } from "./entities";
+import { Initials1686418540213 } from "./migrations/1686418540213-initials";
 
 const DataSourceSettings = (): DataSourceOptions => {
-  const entities = [];
-  const migrations = [];
+  const entities = [User, Link];
+  const migrations = [Initials1686418540213];
 
   const node_env = process.env.NODE_ENV;
 
@@ -15,6 +16,14 @@ const DataSourceSettings = (): DataSourceOptions => {
       url: process.env.DATABASE_URL,
       entities,
       migrations,
+    };
+  } else if (node_env === "test") {
+    return {
+      type: "sqlite",
+      database: ":memory:",
+      entities,
+      migrations,
+      synchronize: true,
     };
   }
 
