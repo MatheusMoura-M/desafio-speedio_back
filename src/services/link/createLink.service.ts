@@ -12,10 +12,6 @@ export const createLinkService = async (
     id: userId,
   });
 
-  if (!userFound) {
-    throw new AppError("user not found", 404);
-  }
-
   const shortenedLink = createShortenedLink();
 
   const link = {
