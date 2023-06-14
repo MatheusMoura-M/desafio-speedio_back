@@ -31,7 +31,7 @@ ou
   npm i
 ``` 
 
-### 3️⃣- Faça uma cópia do arquivo ".env.example", nomeie como ".env" e preencha o campo "PORT" 
+### 3️⃣- Faça uma cópia do arquivo ".env.example", nomeie como ".env" e preencha os campos 
 
 
 ### 4️⃣- Execute o servidor 
